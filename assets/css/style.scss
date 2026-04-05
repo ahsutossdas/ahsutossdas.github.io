@@ -35,6 +35,21 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
+.site-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: var(--heading);
+}
+
+.site-subtitle {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
 .site-main {
   padding: 36px 0 50px;
 }
