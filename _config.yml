@@ -1,3 +1,22 @@
 title: Ahsutoss Das
-description: Ph.D. Candidate in Finance at Florida International University
-theme: jekyll-theme-minimal
+email: adas025@fiu.edu
+description: >-
+  Ph.D. Candidate in Finance at Florida International University.
+  Research interests include asset pricing, hedge funds, market microstructure,
+  option pricing, and FinTech.
+baseurl: ""
+url: "https://ahsutossdas.github.io"
+
+theme: minima
+
+header_pages:
+  - research.md
+  - teaching.md
+  - cv.md
+  - contact.md
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-feed
