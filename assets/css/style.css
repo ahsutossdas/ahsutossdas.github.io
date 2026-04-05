@@ -1,0 +1,161 @@
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --heading: #0f172a;
+  --accent: #1f4e79;
+  --accent-dark: #163b5c;
+  --line: #d9e1ea;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+}
+
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: var(--heading);
+}
+
+.site-subtitle {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.site-main {
+  padding: 36px 0 50px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr;
+  gap: 34px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.hero-card,
+.card,
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-card,
+.card {
+  padding: 24px;
+}
+
+.hero-image img {
+  width: 280px;
+  max-width: 100%;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+
+.page-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 2.3rem;
+  color: var(--heading);
+}
+
+.lead {
+  font-size: 1.08rem;
+  color: #334155;
+}
+
+.paper + .paper,
+.card + .card {
+  margin-top: 18px;
+}
+
+.paper-title {
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+  color: var(--heading);
+}
+
+.paper-meta,
+.muted {
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.chips span {
+  background: #f8fbff;
+  color: var(--accent);
+  border: 1px solid #d5e2f0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  border-left: 3px solid #cfdae7;
+  padding-left: 16px;
+}
+
+.timeline-card {
+  padding: 18px 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--accent-dark);
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
