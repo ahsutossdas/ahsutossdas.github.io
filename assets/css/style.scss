@@ -1,1 +1,19 @@
+---
+---
 
+@import "{{ site.theme }}";
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.site-title a {
+  text-decoration: none;
+}
