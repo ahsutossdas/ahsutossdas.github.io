@@ -1,81 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ahsutoss Das | Academic Website</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Ahsutoss Das</h1>
-      <p class="subtitle">Ph.D. Candidate in Finance | Florida International University</p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="profile-text">
+        <h1>Ahsutoss Das</h1>
+        <p class="tagline">Ph.D. Candidate in Finance</p>
+        <p class="affiliation">Florida International University</p>
 
-    <section id="about">
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#education">Education</a>
+          <a href="#awards">Awards</a>
+          <a href="#service">Service</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="profile-photo">
+        <img src="photo.jpg" alt="Ahsutoss Das" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="section">
       <h2>About</h2>
       <p>
-        I am a Ph.D. Candidate in Finance at Florida International University. My research focuses on
-        asset pricing, hedge funds, market microstructure, option pricing, and FinTech. I am particularly
-        interested in higher-moment asset pricing, skewness-seeking behavior, and data-driven methods in finance.
+        I am a Ph.D. Candidate in Finance at Florida International University.
+        My research focuses on asset pricing, hedge funds, market microstructure,
+        option pricing, and FinTech. I am particularly interested in higher-moment
+        asset pricing, skewness-seeking behavior, and the use of machine learning
+        and large-scale financial data in empirical research.
       </p>
     </section>
 
-    <section id="research">
-      <h2>Research</h2>
-
-      <div class="paper">
-        <h3>Resolving the Higher-Moment Pricing Puzzle: Systematic and Idiosyncratic Risk Across Penny and Non-Penny Stocks</h3>
-        <p><strong>with Mustafa Caglayan and Diogo Duarte</strong></p>
-        <p>
-          We examine whether variance, skewness, and kurtosis predict expected returns once decomposed into
-          systematic and idiosyncratic components. Using U.S. common stocks from 1963–2024, we show that the mixed
-          evidence in the literature reflects pooling two distinct markets. Splitting by nominal price resolves the
-          higher-moment pricing puzzle: penny stocks earn negative premia for all three moments, whereas non-penny
-          stocks earn positive premia, strongest for idiosyncratic skewness and kurtosis.
-        </p>
+    <section id="interests" class="section">
+      <h2>Research Interests</h2>
+      <div class="chips">
+        <span>Asset Pricing</span>
+        <span>Hedge Funds</span>
+        <span>Market Microstructure</span>
+        <span>Option Pricing</span>
+        <span>FinTech</span>
+        <span>Machine Learning</span>
+        <span>Artificial Intelligence</span>
+        <span>Big Data in Finance</span>
+        <span>Cryptocurrency</span>
       </div>
+    </section>
 
-      <div class="paper">
+    <section id="research" class="section">
+      <h2>Working Papers</h2>
+
+      <article class="card">
+        <h3>Resolving the Higher-Moment Pricing Puzzle: Systematic and Idiosyncratic Risk Across Penny and Non-Penny Stocks</h3>
+        <p class="coauthors">with <strong>Mustafa Caglayan</strong> and <strong>Diogo Duarte</strong></p>
+        <p>
+          We examine whether variance, skewness, and kurtosis predict expected
+          returns once decomposed into systematic and idiosyncratic components.
+          Using U.S. common stocks from 1963–2024, we show that the mixed evidence
+          in the literature reflects pooling two distinct markets. Splitting by
+          nominal price resolves the higher-moment pricing puzzle: penny stocks earn
+          negative premia for all three moments—driven primarily by systematic risk,
+          especially variance—whereas non-penny stocks earn positive premia,
+          strongest for idiosyncratic skewness and kurtosis.
+        </p>
+      </article>
+
+      <article class="card">
         <h3>Who Seeks Skewness? Payoff Engineering in Hedge Funds</h3>
         <p>
-          We examine whether hedge funds deliberately seek positively skewed, lottery-like payoffs and assess the
-          economic implications of such behavior. Using a comprehensive panel of hedge funds from 1994 to 2024, we
-          show that positive skewness is rare but persistent. Funds with persistently high skewness attract
-          significantly higher investor flows and earn superior returns, while not exhibiting higher exit risk.
+          We examine whether hedge funds deliberately seek positively skewed,
+          lottery-like payoffs and assess the economic implications of such behavior.
+          Using a comprehensive panel of hedge funds from 1994 to 2024, we show that
+          positive skewness is rare but persistent and varies substantially even
+          within narrowly defined strategy and geographic categories. Funds with
+          persistently high skewness attract significantly higher investor flows and
+          earn superior returns, controlling for performance, volatility, size, and
+          fixed effects.
         </p>
+      </article>
+    </section>
+
+    <section id="teaching" class="section">
+      <h2>Teaching</h2>
+      <div class="card">
+        <p><strong>Instructor of Record</strong>, Financial Management (FIN 3403)</p>
+        <p>Florida International University</p>
+        <p>Fall 2025, Spring 2026</p>
+        <p>Class size: 55–60 students</p>
       </div>
     </section>
 
-    <section id="teaching">
-      <h2>Teaching</h2>
-      <p><strong>Instructor of Record</strong>, Financial Management (FIN 3403), Florida International University</p>
-      <p>Fall 2025, Spring 2026 | Class Size: 55–60</p>
+    <section id="education" class="section">
+      <h2>Education</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Florida International University</h3>
+          <p>Ph.D. Candidate in Business Administration (Finance)</p>
+          <p class="muted">August 2023 – Present | Miami, Florida</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Texas State University</h3>
+          <p>M.S. in Quantitative Finance &amp; Economics</p>
+          <p class="muted">Graduation: May 2023 | San Marcos, Texas</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>University of Chittagong</h3>
+          <p>M.S. in Applied Mathematics</p>
+          <p class="muted">Graduation: May 2012 | Chittagong, Bangladesh</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>University of Chittagong</h3>
+          <p>B.S. in Mathematics</p>
+          <p class="muted">Graduation: June 2010 | Chittagong, Bangladesh</p>
+        </div>
+      </div>
     </section>
 
-    <section id="cv">
+    <section id="experience" class="section">
+      <h2>Professional Experience</h2>
+
+      <div class="card">
+        <h3>Florida International University, Chapman College of Business</h3>
+        <p>Graduate Teaching Assistant, Department of Finance</p>
+        <p class="muted">August 2023 – Present | Miami, FL, USA</p>
+      </div>
+
+      <div class="card">
+        <h3>Texas State University, McCoy College of Business</h3>
+        <p>Graduate Assistant, Department of Finance &amp; Economics</p>
+        <p class="muted">September 2021 – May 2023 | San Marcos, TX, USA</p>
+      </div>
+
+      <div class="card">
+        <h3>SBAC Bank Limited</h3>
+        <p>Head of Credit, Foreign Trade Operations, and Risk Management</p>
+        <p class="muted">January 2015 – July 2021 | Chittagong, Bangladesh</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="card">
+        <p><strong>Programming:</strong> Python, R, Stata, LaTeX</p>
+        <p><strong>Machine Learning &amp; AI:</strong> Gradient Boosting, Random Forests, Support Vector Machines, Clustering, Optimization, Text Analysis, Natural Language Processing</p>
+        <p><strong>Data Platforms:</strong> WRDS, CRSP, Compustat, Bloomberg, FactSet, SEC EDGAR</p>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <h2>Awards &amp; Honors</h2>
+      <div class="card">
+        <ul>
+          <li>Outstanding Graduate Student Award (2023–2024), McCoy College of Business, Texas State University</li>
+          <li>Mark Westerbeck Endowed Graduate Fellowship (2023), Texas State University</li>
+          <li>Jesse and Betty Luxton Endowed Graduate Research Fellowship (2023), Texas State University</li>
+          <li>Graduate College Scholarship (2023), Texas State University</li>
+          <li>Graduate College Merit Fellowship (2021), Texas State University</li>
+          <li>McCoy College of Business Fellowship (2021), Texas State University</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="service" class="section">
+      <h2>Academic Service &amp; Leadership</h2>
+      <div class="card">
+        <ul>
+          <li>Vice President, Business Doctoral Student Association (BDSA), Chapman College of Business, FIU (Fall 2025 – Present)</li>
+          <li>Treasurer, Bangladesh Student Organization (BSO), Florida International University (Fall 2025 – Present)</li>
+          <li>Treasurer, Business Doctoral Student Association (BDSA), Chapman College of Business, FIU (Fall 2024 – Summer 2025)</li>
+          <li>President, MSQFE Student Organization, Texas State University (Spring 2022 – Spring 2023)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="cv" class="section">
       <h2>CV</h2>
-      <p><a href="cv.pdf" target="_blank">Download CV (PDF)</a></p>
+      <div class="card">
+        <p><a class="button" href="cv.pdf" target="_blank">Download CV</a></p>
+      </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:adas025@fiu.edu">adas025@fiu.edu</a></p>
-      <p>Mobile: +1 (512) 665-1361</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/ahsutoss-das" target="_blank">linkedin.com/in/ahsutoss-das</a></p>
+      <div class="card">
+        <p><strong>Email:</strong> <a href="mailto:adas025@fiu.edu">adas025@fiu.edu</a></p>
+        <p><strong>Mobile:</strong> +1 (512) 665-1361</p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ahsutoss-das" target="_blank">linkedin.com/in/ahsutoss-das</a></p>
+      </div>
     </section>
+  </main>
 
-    <footer>
-      <p>© 2026 Ahsutoss Das</p>
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Ahsutoss Das. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
