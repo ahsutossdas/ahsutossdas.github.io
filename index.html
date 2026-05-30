@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahsutoss Das — Finance Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy:    #0d1c33;
+            --navy2:   #162844;
+            --navy3:   #1e3557;
+            --ivory:   #f8f4ec;
+            --ivory2:  #f2eddf;
+            --white:   #ffffff;
+            --gold:    #b07820;
+            --gold-l:  #cc9228;
+            --gold-d:  rgba(176,120,32,.18);
+            --gold-f:  rgba(176,120,32,.07);
+            --text:    #1a2840;
+            --text2:   #4a5e78;
+            --text3:   #8898aa;
+            --border:  rgba(26,40,64,.1);
+            --border2: rgba(26,40,64,.06);
+            --shadow:  0 2px 12px rgba(26,40,64,.07);
+            --shadow2: 0 6px 28px rgba(26,40,64,.12);
+            --ph-b:    rgba(176,120,32,.3);
+            --ph-bg:   #ede8dc;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{background:var(--ivory);color:var(--text);font-family:'Lato',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+
+        /* ── PLACEHOLDER ── */
+        .ph{border:1px dashed var(--ph-b);background:var(--ph-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:24px;text-align:center;position:relative;overflow:hidden;transition:border-color .3s}
+        .ph:hover{border-color:rgba(176,120,32,.5)}
+        .ph::after{content:'PLACEHOLDER';position:absolute;top:8px;right:10px;font-size:.5rem;letter-spacing:.18em;color:rgba(176,120,32,.2);font-family:monospace}
+        .ph-ico{font-size:1.8rem;opacity:.22;margin-bottom:2px}
+        .ph-lbl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.7}
+        .ph-cmd{font-size:.59rem;color:var(--text3);font-family:monospace;line-height:1.5;max-width:220px;word-break:break-all}
+
+        /* ── NAV ── */
+        nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 60px;height:64px;display:flex;justify-content:space-between;align-items:center;transition:all .35s}
+        nav.scrolled{background:rgba(13,28,51,.97);backdrop-filter:blur(16px)}
+        .nav-logo{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:500;color:#fff;text-decoration:none;letter-spacing:.02em;line-height:1.2;display:flex;flex-direction:column}
+        .nav-logo span{font-size:.55rem;font-family:'Lato',sans-serif;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:1px}
+        .nav-links{display:flex;gap:26px;list-style:none}
+        .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;transition:color .25s}
+        .nav-links a:hover{color:var(--gold-l)}
+
+        /* ── HERO ── */
+        .hero{min-height:100vh;display:flex;align-items:center;padding:80px 60px 70px;
+            background:var(--navy);
+            background-image:radial-gradient(rgba(255,255,255,.028) 1px,transparent 1px);
+            background-size:28px 28px;
+            position:relative;overflow:hidden}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,120,32,.4),transparent)}
+        .hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(176,120,32,.08) 0%,transparent 65%);pointer-events:none}
+        .hero-grid{display:grid;grid-template-columns:1fr 380px;gap:72px;align-items:center;max-width:1180px;width:100%;margin:0 auto}
+        /* hero text */
+        .hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;opacity:0;animation:fadeUp .7s ease .2s forwards}
+        .hero-tag-line{width:32px;height:1px;background:var(--gold-d)}
+        .hero-tag span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-l)}
+        .hero-name{font-family:'EB Garamond',serif;font-size:clamp(3.6rem,5.8vw,5.6rem);font-weight:500;line-height:1.04;color:#fff;margin-bottom:8px;opacity:0;animation:fadeUp .8s ease .36s forwards;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+        .hero-name em{font-style:italic;color:var(--gold-l)}
+        .hero-dept{font-size:.82rem;color:rgba(255,255,255,.72);letter-spacing:.05em;margin-bottom:26px;opacity:0;animation:fadeUp .65s ease .5s forwards}
+        .hero-dept strong{color:#fff;font-weight:400}
+        .hero-pills{margin-bottom:24px;opacity:0;animation:fadeUp .65s ease .6s forwards}
+        .hero-pills-lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l);margin-bottom:10px}
+        .hero-pills-row{display:flex;flex-wrap:wrap;gap:7px}
+        .pill{font-size:.72rem;color:rgba(255,255,255,.82);padding:5px 13px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07)}
+        .hero-desc{font-size:.95rem;color:rgba(255,255,255,.82);line-height:1.9;margin-bottom:36px;max-width:520px;opacity:0;animation:fadeUp .65s ease .7s forwards}
+        .hero-btns{display:flex;gap:11px;flex-wrap:wrap;opacity:0;animation:fadeUp .65s ease .82s forwards}
+        .btn-gold{background:var(--gold);color:#fff;padding:13px 28px;text-decoration:none;font-size:.69rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;transition:all .3s;font-family:'Lato',sans-serif}
+        .btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 6px 22px rgba(176,120,32,.35)}
+        .btn-navy{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:13px 28px;text-decoration:none;font-size:.69rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;transition:all .3s;font-family:'Lato',sans-serif;background:transparent}
+        .btn-navy:hover{border-color:rgba(255,255,255,.4);color:#fff;transform:translateY(-2px)}
+        /* hero right */
+        .hero-right{display:flex;flex-direction:column;gap:16px;opacity:0;animation:fadeIn .9s ease 1s forwards}
+        .hero-photo{width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid rgba(176,120,32,.45);box-shadow:0 0 0 6px rgba(176,120,32,.1),0 8px 32px rgba(13,28,51,.3)}
+        .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+        .hero-photo.ph{border-radius:50%}
+        .hero-stats{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
+        .stat{padding:20px 16px;text-align:center;transition:background .25s;border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+        .stat:nth-child(even){border-right:none}
+        .stat:nth-child(n+3){border-bottom:none}
+        .stat:hover{background:rgba(255,255,255,.06)}
+        .stat-n{font-family:'EB Garamond',serif;font-size:2.3rem;font-weight:400;color:var(--gold-l);line-height:1;display:block;margin-bottom:6px}
+        .stat-l{font-size:.59rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+        /* ── SHARED SECTIONS ── */
+        .sec-ivory{background:var(--ivory)}
+        .sec-white{background:var(--white)}
+        .sec{padding:88px 60px;max-width:1180px;margin:0 auto}
+        .sec-inner{max-width:1180px;margin:0 auto;padding:88px 60px}
+        .sec-header{position:relative;margin-bottom:50px;overflow:hidden}
+        .sec-header::before{content:attr(data-num);position:absolute;right:-8px;top:-28px;font-family:'EB Garamond',serif;font-size:9rem;font-weight:600;color:rgba(176,120,32,.06);line-height:1;pointer-events:none;user-select:none}
+        .sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+        .sec-enum{font-size:.56rem;letter-spacing:.2em;color:var(--gold);opacity:.5;font-family:monospace}
+        .sec-elbl{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+        .sec-title{font-family:'EB Garamond',serif;font-size:clamp(1.9rem,3vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.16}
+        .sec-title::after{content:'';display:block;width:42px;height:2px;background:var(--gold);margin-top:14px}
+
+        /* ── RESEARCH ── */
+        .papers{display:flex;flex-direction:column;gap:14px}
+        .paper{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold-d);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;position:relative;transition:all .3s}
+        .paper:hover{border-left-color:var(--gold);box-shadow:var(--shadow2);transform:translateX(4px)}
+        .paper-illus{width:100%;height:168px}
+        .paper-illus img{width:100%;height:100%;object-fit:cover;display:block}
+        .paper-body{padding:26px 32px}
+        .paper-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+        .paper-num{font-size:.6rem;letter-spacing:.16em;color:var(--text3);font-family:monospace}
+        .paper-badge{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-d);padding:2px 9px;background:var(--gold-f)}
+        .paper-title{font-family:'EB Garamond',serif;font-size:1.28rem;font-weight:500;color:var(--navy);line-height:1.4;margin-bottom:4px}
+        .paper-authors{font-size:.79rem;color:var(--text3);font-style:italic;margin-bottom:12px}
+        .abstract{font-size:.86rem;color:var(--text2);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .5s ease}
+        .abstract.open{max-height:280px}
+        .paper-actions{display:flex;align-items:center;gap:22px;margin-top:16px;flex-wrap:wrap}
+        .ptbtn{display:flex;align-items:center;gap:7px;font-size:.67rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;transition:color .25s;cursor:pointer;background:none;border:none;font-family:'Lato',sans-serif;padding:0}
+        .paper:hover .ptbtn{color:var(--gold)}
+        .tring{width:15px;height:15px;border:1px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;transition:transform .3s;flex-shrink:0}
+        .paper.open .tring{transform:rotate(45deg)}
+        .ppdf{display:inline-flex;align-items:center;gap:5px;font-size:.67rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .25s;border-bottom:1px solid transparent;padding-bottom:1px}
+        .ppdf:hover{color:var(--gold);border-bottom-color:var(--gold-d)}
+        /* data viz */
+        .viz-wrap{margin-top:48px}
+        .viz-sub{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+        .viz-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        .viz-lbl{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text3);margin-bottom:7px}
+        .viz-ph{aspect-ratio:4/3}
+        .viz-ph img{width:100%;height:100%;object-fit:cover;display:block}
+
+        /* ── TEACHING ── */
+        .campus-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:42px}
+        .campus-ph{aspect-ratio:4/3}
+        .campus-ph img{width:100%;height:100%;object-fit:cover;display:block}
+        .courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px}
+        .course{background:var(--ivory);border:1px solid var(--border);border-left:3px solid var(--gold-d);padding:24px 22px;transition:all .3s}
+        .course:hover{border-left-color:var(--gold);box-shadow:var(--shadow2)}
+        .course-badge{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);padding:3px 8px;display:inline-block;margin-bottom:12px;background:var(--white)}
+        .course-code{font-size:.62rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+        .course-name{font-family:'EB Garamond',serif;font-size:1.12rem;font-weight:500;color:var(--navy);line-height:1.3;margin-bottom:7px}
+        .course-meta{font-size:.76rem;color:var(--text3)}
+
+        /* ── PROFESSIONAL EXPERIENCE ── */
+        .exp-list{display:flex;flex-direction:column}
+        .exp-item{display:grid;grid-template-columns:150px 1fr;gap:36px;padding:32px 0;border-bottom:1px solid var(--border2)}
+        .exp-item:first-child{border-top:1px solid var(--border2)}
+        .exp-period{padding-top:3px}
+        .exp-period-dates{font-size:.68rem;letter-spacing:.14em;color:var(--gold);font-family:monospace;text-transform:uppercase;display:block;margin-bottom:5px}
+        .exp-period-loc{font-size:.72rem;color:var(--text3);line-height:1.5}
+        .exp-role{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--navy);margin-bottom:2px}
+        .exp-org{font-size:.82rem;color:var(--text2);margin-bottom:12px;font-style:italic}
+        .exp-bullets{padding-left:14px;display:flex;flex-direction:column;gap:6px}
+        .exp-bullets li{font-size:.84rem;color:var(--text2);line-height:1.72;list-style:none;position:relative;padding-left:14px}
+        .exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:.75rem;top:2px}
+
+        /* ── EDUCATION ── */
+        .timeline{position:relative;padding-left:40px}
+        .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--border)}
+        .tl-item{position:relative;margin-bottom:42px}
+        .tl-item:last-child{margin-bottom:0}
+        .tl-item::before{content:'';position:absolute;left:-44px;top:6px;width:9px;height:9px;background:var(--gold);border-radius:50%}
+        .tl-year{font-size:.62rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;font-family:monospace}
+        .tl-title{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--navy);margin-bottom:3px}
+        .tl-inst{font-size:.83rem;color:var(--text2);margin-bottom:3px}
+        .tl-note{font-size:.76rem;color:var(--text3);font-style:italic}
+
+        /* ── EXPERTISE ── */
+        .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(208px,1fr));gap:14px}
+        .skill-block{background:var(--white);border:1px solid var(--border);padding:22px 20px;transition:all .3s;box-shadow:var(--shadow)}
+        .skill-block:hover{border-color:var(--gold-d);box-shadow:var(--shadow2)}
+        .skill-head{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px}
+        .tags{display:flex;flex-wrap:wrap;gap:6px}
+        .tag{font-size:.7rem;color:var(--text2);padding:4px 9px;background:rgba(26,40,64,.05);border:1px solid rgba(26,40,64,.08);transition:all .25s}
+        .tag:hover{background:var(--gold-f);border-color:var(--gold-d);color:var(--navy)}
+
+        /* ── AWARDS ── */
+        .awards-list{display:flex;flex-direction:column}
+        .award{display:flex;align-items:flex-start;gap:16px;padding:15px 18px;border-bottom:1px solid var(--border2);transition:background .25s}
+        .award:first-child{border-top:1px solid var(--border2)}
+        .award:hover{background:var(--gold-f)}
+        .award-year{font-size:.66rem;color:var(--text3);font-family:monospace;flex-shrink:0;margin-top:4px;min-width:34px}
+        .award-gem{color:var(--gold);font-size:.85rem;flex-shrink:0;margin-top:5px}
+        .award-text{font-size:.87rem;color:var(--text2);line-height:1.62}
+
+        /* ── SERVICE ── */
+        .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
+        .svc-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--gold-d);padding:22px 20px;transition:all .3s;box-shadow:var(--shadow)}
+        .svc-card:hover{border-top-color:var(--gold);box-shadow:var(--shadow2)}
+        .svc-role{font-family:'EB Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--navy);margin-bottom:4px}
+        .svc-org{font-size:.78rem;color:var(--text2);margin-bottom:3px}
+        .svc-yr{font-size:.65rem;color:var(--gold);letter-spacing:.1em;font-family:monospace}
+
+        /* ── MEDIA ── */
+        .media-layout{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-bottom:16px}
+        .media-row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .m-lbl{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+        .vid-ph{width:100%;aspect-ratio:16/9}
+        .vid-ph iframe,.vid-ph video{width:100%;height:100%;display:block;border:0}
+
+        /* ── DOCUMENTS ── */
+        .docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:14px}
+        .doc-card{background:var(--white);border:1px solid var(--border);border-bottom:3px solid var(--gold-d);padding:28px 24px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:all .3s}
+        .doc-card:hover{border-bottom-color:var(--gold);box-shadow:var(--shadow2);transform:translateY(-3px)}
+        .doc-icon{color:var(--navy);margin-bottom:14px;opacity:.55}
+        .doc-badge{font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+        .doc-title{font-family:'EB Garamond',serif;font-size:1.12rem;font-weight:500;color:var(--navy);margin-bottom:8px;line-height:1.35}
+        .doc-desc{font-size:.82rem;color:var(--text2);line-height:1.72;flex:1;margin-bottom:18px}
+        .doc-btn{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;padding:9px 17px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all .3s;font-family:'Lato',sans-serif;align-self:flex-start}
+        .doc-btn:hover{background:var(--navy3);transform:translateY(-1px);box-shadow:0 4px 14px rgba(13,28,51,.2)}
+        .doc-phnote{font-size:.57rem;color:var(--text3);font-family:monospace;margin-top:7px}
+
+        /* ── FOOTER ── */
+        footer{background:var(--navy);padding:64px;text-align:center;border-top:3px solid var(--gold)}
+        .foot-name{font-family:'EB Garamond',serif;font-size:2rem;font-weight:400;color:#fff;margin-bottom:6px}
+        .foot-role{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:30px}
+        .foot-links{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;margin-bottom:32px}
+        .foot-link{color:rgba(255,255,255,.42);text-decoration:none;font-size:.82rem;display:flex;align-items:center;gap:8px;transition:color .3s}
+        .foot-link:hover{color:var(--gold-l)}
+        .foot-copy{font-size:.67rem;color:rgba(255,255,255,.2)}
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+        .reveal.vis{opacity:1;transform:translateY(0)}
+        .d1{transition-delay:.06s}.d2{transition-delay:.13s}.d3{transition-delay:.20s}
+        .d4{transition-delay:.27s}.d5{transition-delay:.34s}.d6{transition-delay:.41s}
+
+        /* ── GALLERY SLIDESHOW ── */
+        .gallery-show{position:relative;overflow:hidden;background:var(--navy);border:1px solid var(--border);box-shadow:var(--shadow2)}
+        .gs-track{display:flex;transition:transform .65s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+        .gs-slide{flex:0 0 100%;position:relative;aspect-ratio:16/9}
+        .gs-media{width:100%;height:100%;position:absolute;inset:0}
+        .gs-media.ph{border:none;border-radius:0;background:rgba(13,28,51,.85)}
+        .gs-media.ph::after{display:none}
+        .gs-media img{width:100%;height:100%;object-fit:cover;display:block}
+        .gs-media iframe{width:100%;height:100%;border:0;display:block}
+        .gs-caption{position:absolute;bottom:0;left:0;right:0;padding:11px 20px 13px;background:linear-gradient(transparent,rgba(13,28,51,.85));font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);z-index:2;pointer-events:none}
+        .gs-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(13,28,51,.65);border:1px solid rgba(176,120,32,.35);color:var(--gold-l);width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s;backdrop-filter:blur(4px)}
+        .gs-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+        .gs-prev{left:14px}.gs-next{right:14px}
+        .gs-counter{position:absolute;top:13px;right:14px;font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.5);font-family:monospace;background:rgba(13,28,51,.55);padding:4px 10px;z-index:10;backdrop-filter:blur(4px)}
+        .gs-footer{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 0;background:var(--navy2)}
+        .gs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .35s;flex-shrink:0}
+        .gs-dot.active{background:var(--gold);width:22px;border-radius:3px}
+        .gs-type-badge{position:absolute;top:13px;left:14px;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);background:rgba(13,28,51,.55);border:1px solid rgba(176,120,32,.28);padding:3px 9px;z-index:10;backdrop-filter:blur(4px)}
+
+        ::-webkit-scrollbar{width:4px}
+        ::-webkit-scrollbar-track{background:var(--ivory)}
+        ::-webkit-scrollbar-thumb{background:rgba(176,120,32,.28);border-radius:2px}
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1040px){.hero-grid{grid-template-columns:1fr 330px;gap:52px}}
+        @media(max-width:860px){
+            nav{padding:0 24px}
+            .nav-links{display:none}
+            .hero{padding:84px 24px 56px}
+            .hero-grid{grid-template-columns:1fr;gap:36px}
+            .hero-right{flex-direction:row;flex-wrap:wrap;justify-content:center}
+            .hero-photo{width:155px;flex-shrink:0}
+            .hero-stats{flex:1;min-width:170px}
+            .sec,.sec-inner{padding:62px 24px}
+            .exp-item{grid-template-columns:1fr;gap:8px}
+            .media-layout,.media-row2,.viz-row{grid-template-columns:1fr}
+            .campus-strip{grid-template-columns:1fr 1fr}
+            footer{padding:46px 24px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="scrolled">
+    <a class="nav-logo" href="#">Ahsutoss Das <span>Florida International University</span></a>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#documents">Documents</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-grid">
+        <div>
+            <div class="hero-tag">
+                <div class="hero-tag-line"></div>
+                <span>Ph.D. Candidate in Finance</span>
+            </div>
+            <h1 class="hero-name">Ahsutoss<br><em>Das</em></h1>
+            <p class="hero-dept">
+                <strong>Department of Finance &nbsp;&middot;&nbsp; Chapman College of Business</strong><br>
+                Florida International University &nbsp;&middot;&nbsp; Miami, Florida
+            </p>
+            <div class="hero-pills">
+                <p class="hero-pills-lbl">Research Interests</p>
+                <div class="hero-pills-row">
+                    <span class="pill">Empirical Asset Pricing</span>
+                    <span class="pill">Risk Premia</span>
+                    <span class="pill">Hedge Fund Behavior</span>
+                    <span class="pill">Market Microstructure</span>
+                    <span class="pill">AI &amp; ML in Finance</span>
+                </div>
+            </div>
+            <p class="hero-desc">Developing empirical frameworks to measure higher-moment risks&mdash;variance, skewness, and tail risk&mdash;and evaluating their implications for asset valuation, investor behavior, and capital allocation efficiency in U.S. equity and alternative investment markets.</p>
+            <div class="hero-btns">
+                <a href="#research" class="btn-gold">Working Papers</a>
+                <a href="CV.pdf" class="btn-navy" target="_blank">Download CV</a>
+                <a href="#contact" class="btn-navy">Contact</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-photo"><img src="headshot.jpg" alt="Ahsutoss Das"></div>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-n">2</span><span class="stat-l">Working Papers</span></div>
+                <div class="stat"><span class="stat-n">61</span><span class="stat-l">Years of Data</span></div>
+                <div class="stat"><span class="stat-n">4</span><span class="stat-l">Courses Taught</span></div>
+                <div class="stat"><span class="stat-n">6</span><span class="stat-l">Awards</span></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 01 RESEARCH -->
+<div class="sec-ivory" id="research">
+    <div class="sec">
+        <div class="sec-header reveal" data-num="01">
+            <div class="sec-eyebrow"><span class="sec-enum">01</span><span class="sec-elbl">Working Papers</span></div>
+            <h2 class="sec-title">Research</h2>
+        </div>
+        <div class="papers">
+            <div class="paper reveal d1" onclick="togglePaper(this)">
+                <!--ILLUSTRATION 1 — Replace: <div class="paper-illus"><img src="paper1-fig.png" alt="..."></div>-->
+                <div class="paper-illus ph"><div class="ph-ico">&#128200;</div><p class="ph-lbl">Key Figure</p><p class="ph-cmd">&lt;img src="paper1-fig.png"&gt;</p></div>
+                <div class="paper-body">
+                    <div class="paper-meta"><span class="paper-num">01</span><span class="paper-badge">Working Paper</span></div>
+                    <h3 class="paper-title">Resolving the Higher-Moment Pricing Puzzle: Systematic and Idiosyncratic Risk Across Penny and Non-Penny Stocks</h3>
+                    <p class="paper-authors">Ahsutoss Das, Mustafa Caglayan, and Diogo Duarte</p>
+                    <div class="abstract">Analyzes U.S. equity markets (1963&ndash;2024) by decomposing higher-moment risks into systematic and idiosyncratic components. The study demonstrates that conflicting findings in prior literature arise from pooling structurally different market segments. Results provide new evidence on risk compensation and investor demand for tail-risk exposures in U.S. capital markets.</div>
+                    <div class="paper-actions">
+                        <button class="ptbtn" onclick="event.stopPropagation();togglePaper(this.closest('.paper'))"><div class="tring">+</div><span class="tlbl">Abstract</span></button>
+                        <a href="#" class="ppdf">&#8595;&nbsp;PDF&nbsp;<span style="font-size:.55rem;opacity:.35;font-family:monospace">[add link]</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="paper reveal d2" onclick="togglePaper(this)">
+                <!--ILLUSTRATION 2 — Replace: <div class="paper-illus"><img src="paper2-fig.png" alt="..."></div>-->
+                <div class="paper-illus ph"><div class="ph-ico">&#128202;</div><p class="ph-lbl">Key Figure</p><p class="ph-cmd">&lt;img src="paper2-fig.png"&gt;</p></div>
+                <div class="paper-body">
+                    <div class="paper-meta"><span class="paper-num">02</span><span class="paper-badge">Working Paper</span></div>
+                    <h3 class="paper-title">Who Seeks Skewness? Payoff Engineering in Hedge Funds</h3>
+                    <p class="paper-authors">Ahsutoss Das</p>
+                    <div class="abstract">Examines whether hedge fund managers actively design positively skewed payoff structures. Using a comprehensive hedge fund panel (1994&ndash;2024), the study shows that skewness-seeking behavior attracts investor capital and improves performance without increasing failure risk, highlighting investor demand for convex payoff profiles in alternative investments.</div>
+                    <div class="paper-actions">
+                        <button class="ptbtn" onclick="event.stopPropagation();togglePaper(this.closest('.paper'))"><div class="tring">+</div><span class="tlbl">Abstract</span></button>
+                        <a href="#" class="ppdf">&#8595;&nbsp;PDF&nbsp;<span style="font-size:.55rem;opacity:.35;font-family:monospace">[add link]</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="viz-wrap reveal">
+            <p class="viz-sub">Data Visuals &amp; Key Findings</p>
+            <div class="viz-row">
+                <div>
+                    <p class="viz-lbl">Figure 1</p>
+                    <!--Replace: <div class="viz-ph"><img src="chart1.png" alt="..."></div>-->
+                    <div class="viz-ph ph"><div class="ph-ico">&#128201;</div><p class="ph-lbl">Chart / Figure</p><p class="ph-cmd">&lt;img src="chart1.png"&gt;</p></div>
+                </div>
+                <div>
+                    <p class="viz-lbl">Figure 2</p>
+                    <!--Replace: <div class="viz-ph"><img src="chart2.png" alt="..."></div>-->
+                    <div class="viz-ph ph"><div class="ph-ico">&#128201;</div><p class="ph-lbl">Chart / Figure</p><p class="ph-cmd">&lt;img src="chart2.png"&gt;</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 02 TEACHING (Instructor of Record only) -->
+<div class="sec-white" id="teaching">
+    <div class="sec-inner">
+        <div class="sec-header reveal" data-num="02">
+            <div class="sec-eyebrow"><span class="sec-enum">02</span><span class="sec-elbl">Instructor of Record &middot; Chapman College of Business</span></div>
+            <h2 class="sec-title">Teaching</h2>
+        </div>
+        <!--CAMPUS PHOTOS — Replace each: <div class="campus-ph"><img src="campus1.jpg" alt="FIU"></div>-->
+        <div class="campus-strip reveal">
+            <div class="campus-ph ph"><div class="ph-ico">&#127963;</div><p class="ph-lbl">Campus Photo</p><p class="ph-cmd">src="campus1.jpg"</p></div>
+            <div class="campus-ph ph"><div class="ph-ico">&#127979;</div><p class="ph-lbl">Campus Photo</p><p class="ph-cmd">src="campus2.jpg"</p></div>
+            <div class="campus-ph ph"><div class="ph-ico">&#128218;</div><p class="ph-lbl">Campus Photo</p><p class="ph-cmd">src="campus3.jpg"</p></div>
+            <div class="campus-ph ph"><div class="ph-ico">&#127891;</div><p class="ph-lbl">Campus Photo</p><p class="ph-cmd">src="campus4.jpg"</p></div>
+        </div>
+        <div class="courses">
+            <div class="course reveal d1">
+                <div class="course-badge">Instructor of Record</div>
+                <div class="course-code">FIN 3403</div>
+                <div class="course-name">Financial Management</div>
+                <div class="course-meta">Fall 2025 &middot; Spring 2026 &middot; Summer 2026 (Online)</div>
+            </div>
+            <div class="course reveal d2">
+                <div class="course-badge">Instructor of Record</div>
+                <div class="course-code">FIN 4303</div>
+                <div class="course-name">Financial Markets and Institutions</div>
+                <div class="course-meta">Fall 2026</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 03 PROFESSIONAL EXPERIENCE -->
+<div class="sec-ivory" id="experience">
+    <div class="sec">
+        <div class="sec-header reveal" data-num="03">
+            <div class="sec-eyebrow"><span class="sec-enum">03</span><span class="sec-elbl">Academic &amp; Industry Roles</span></div>
+            <h2 class="sec-title">Professional Experience</h2>
+        </div>
+        <div class="exp-list">
+            <div class="exp-item reveal d1">
+                <div class="exp-period">
+                    <span class="exp-period-dates">2023 &ndash; Present</span>
+                    <span class="exp-period-loc">Miami, Florida</span>
+                </div>
+                <div>
+                    <p class="exp-role">Graduate Teaching Assistant</p>
+                    <p class="exp-org">Department of Finance &middot; Florida International University</p>
+                    <ul class="exp-bullets">
+                        <li>Supported faculty research in empirical asset pricing, financial econometrics, and large-scale financial data analysis using WRDS databases.</li>
+                        <li>Developed quantitative learning materials and analytical assignments integrating financial modeling and data-driven decision-making.</li>
+                        <li>Provided programming and statistical support using Python and financial datasets to enhance research and classroom analytics.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exp-item reveal d2">
+                <div class="exp-period">
+                    <span class="exp-period-dates">2021 &ndash; 2023</span>
+                    <span class="exp-period-loc">San Marcos, Texas</span>
+                </div>
+                <div>
+                    <p class="exp-role">Graduate Assistant</p>
+                    <p class="exp-org">Department of Finance &amp; Economics &middot; Texas State University</p>
+                    <ul class="exp-bullets">
+                        <li>Assisted faculty research projects involving econometric modeling, financial data processing, and empirical analysis in quantitative finance.</li>
+                        <li>Supported undergraduate and graduate instruction through analytical tutoring and development of finance problem sets.</li>
+                        <li>Applied programming-based data analysis to improve research workflows and empirical teaching applications.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exp-item reveal d3">
+                <div class="exp-period">
+                    <span class="exp-period-dates">2015 &ndash; 2021</span>
+                    <span class="exp-period-loc">Chittagong, Bangladesh</span>
+                </div>
+                <div>
+                    <p class="exp-role">Head of Credit, Foreign Trade Operations &amp; Risk Management</p>
+                    <p class="exp-org">SBAC Bank Limited</p>
+                    <ul class="exp-bullets">
+                        <li>Directed credit risk evaluation and international trade financing operations for institutional lending portfolios.</li>
+                        <li>Managed portfolio risk monitoring, regulatory compliance, and credit assessment processes.</li>
+                        <li>Implemented quantitative risk evaluation frameworks supporting data-driven lending and risk management decisions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 04 EDUCATION -->
+<div class="sec-white" id="education">
+    <div class="sec-inner">
+        <div class="sec-header reveal" data-num="04">
+            <div class="sec-eyebrow"><span class="sec-enum">04</span><span class="sec-elbl">Academic Background</span></div>
+            <h2 class="sec-title">Education</h2>
+        </div>
+        <div class="timeline">
+            <div class="tl-item reveal d1">
+                <p class="tl-year">2023 &ndash; Present</p>
+                <p class="tl-title">Ph.D. Candidate, Business Administration (Finance)</p>
+                <p class="tl-inst">Florida International University &middot; Miami, Florida</p>
+                <p class="tl-note">Dissertation: Higher-moment risk premia, hedge fund behavior, empirical asset pricing</p>
+            </div>
+            <div class="tl-item reveal d2">
+                <p class="tl-year">2021 &ndash; 2023</p>
+                <p class="tl-title">M.S., Quantitative Finance &amp; Economics</p>
+                <p class="tl-inst">Texas State University &middot; San Marcos, Texas</p>
+                <p class="tl-note">Outstanding Graduate Student Award &middot; Multiple fellowships</p>
+            </div>
+            <div class="tl-item reveal d3">
+                <p class="tl-year">2012</p>
+                <p class="tl-title">M.S., Applied Mathematics</p>
+                <p class="tl-inst">University of Chittagong &middot; Bangladesh</p>
+            </div>
+            <div class="tl-item reveal d4">
+                <p class="tl-year">2010</p>
+                <p class="tl-title">B.S., Mathematics</p>
+                <p class="tl-inst">University of Chittagong &middot; Bangladesh</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 05 EXPERTISE -->
+<div class="sec-ivory" id="expertise">
+    <div class="sec">
+        <div class="sec-header reveal" data-num="05">
+            <div class="sec-eyebrow"><span class="sec-enum">05</span><span class="sec-elbl">Technical Capabilities</span></div>
+            <h2 class="sec-title">Expertise</h2>
+        </div>
+        <div class="skill-grid">
+            <div class="skill-block reveal d1"><p class="skill-head">Programming</p><div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">Stata</span><span class="tag">LaTeX</span></div></div>
+            <div class="skill-block reveal d2"><p class="skill-head">Machine Learning</p><div class="tags"><span class="tag">Random Forests</span><span class="tag">Gradient Boosting</span><span class="tag">SVM</span><span class="tag">Clustering</span><span class="tag">Optimization</span><span class="tag">NLP</span></div></div>
+            <div class="skill-block reveal d3"><p class="skill-head">Financial Databases</p><div class="tags"><span class="tag">WRDS</span><span class="tag">CRSP</span><span class="tag">Compustat</span><span class="tag">Bloomberg</span><span class="tag">FactSet</span><span class="tag">SEC EDGAR</span></div></div>
+            <div class="skill-block reveal d4"><p class="skill-head">Research Areas</p><div class="tags"><span class="tag">Asset Pricing</span><span class="tag">Risk Premia</span><span class="tag">Hedge Funds</span><span class="tag">Market Microstructure</span><span class="tag">Option-Based Measures</span></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 06 AWARDS -->
+<div class="sec-white" id="awards">
+    <div class="sec-inner">
+        <div class="sec-header reveal" data-num="06">
+            <div class="sec-eyebrow"><span class="sec-enum">06</span><span class="sec-elbl">Recognition</span></div>
+            <h2 class="sec-title">Honors &amp; Awards</h2>
+        </div>
+        <div class="awards-list">
+            <div class="award reveal d1"><span class="award-year">2026</span><span class="award-gem">&#9670;</span><span class="award-text">Graduate-Level Three Minute Thesis (3MT) Finalist &mdash; Florida International University</span></div>
+            <div class="award reveal d2"><span class="award-year">2024</span><span class="award-gem">&#9670;</span><span class="award-text">Outstanding Graduate Student Award &mdash; Texas State University (2023&ndash;2024)</span></div>
+            <div class="award reveal d3"><span class="award-year">2023</span><span class="award-gem">&#9670;</span><span class="award-text">Mark Westerbeck Endowed Graduate Fellowship &mdash; Texas State University</span></div>
+            <div class="award reveal d4"><span class="award-year">2023</span><span class="award-gem">&#9670;</span><span class="award-text">Jesse and Betty Luxton Graduate Research Fellowship &mdash; Texas State University</span></div>
+            <div class="award reveal d5"><span class="award-year">2021</span><span class="award-gem">&#9670;</span><span class="award-text">Graduate College Merit Fellowship &mdash; Texas State University</span></div>
+            <div class="award reveal d6"><span class="award-year">2021</span><span class="award-gem">&#9670;</span><span class="award-text">McCoy College of Business Fellowship &mdash; Texas State University</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 07 LEADERSHIP & SERVICE — right after Awards -->
+<div class="sec-ivory" id="service">
+    <div class="sec">
+        <div class="sec-header reveal" data-num="07">
+            <div class="sec-eyebrow"><span class="sec-enum">07</span><span class="sec-elbl">University &amp; Community</span></div>
+            <h2 class="sec-title">Leadership &amp; Service</h2>
+        </div>
+        <div class="svc-grid">
+            <div class="svc-card reveal d1"><p class="svc-role">Vice President</p><p class="svc-org">Business Doctoral Student Association, FIU</p><p class="svc-yr">2025 &ndash; Present</p></div>
+            <div class="svc-card reveal d2"><p class="svc-role">Treasurer</p><p class="svc-org">Bangladesh Student Organization, FIU</p><p class="svc-yr">2025 &ndash; Present</p></div>
+            <div class="svc-card reveal d3"><p class="svc-role">Treasurer</p><p class="svc-org">Business Doctoral Student Association, FIU</p><p class="svc-yr">2024 &ndash; 2025</p></div>
+            <div class="svc-card reveal d4"><p class="svc-role">President</p><p class="svc-org">MSQFE Student Organization, Texas State University</p><p class="svc-yr">2022 &ndash; 2023</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- 08 MEDIA -->
+<div class="sec-white" id="media">
+    <div class="sec-inner">
+        <div class="sec-header reveal" data-num="08">
+            <div class="sec-eyebrow"><span class="sec-enum">08</span><span class="sec-elbl">Photos, Talks &amp; Presentations</span></div>
+            <h2 class="sec-title">Media</h2>
+        </div>
+
+        <div class="gallery-show reveal" id="mediaShow">
+            <div class="gs-track">
+
+                <!-- SLIDE 1 — Photo -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Photo</div>
+                    <!--Replace: <div class="gs-media"><img src="photo1.jpg" alt="FIU Campus"></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#127963;</div><p class="ph-lbl">Campus / Event Photo</p><p class="ph-cmd">src="photo1.jpg"</p></div>
+                    <div class="gs-caption">Florida International University</div>
+                </div>
+
+                <!-- SLIDE 2 — Photo -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Photo</div>
+                    <!--Replace: <div class="gs-media"><img src="photo2.jpg" alt="..."></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#127979;</div><p class="ph-lbl">Campus / Event Photo</p><p class="ph-cmd">src="photo2.jpg"</p></div>
+                    <div class="gs-caption">Chapman College of Business</div>
+                </div>
+
+                <!-- SLIDE 3 — Photo -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Photo</div>
+                    <!--Replace: <div class="gs-media"><img src="photo3.jpg" alt="..."></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#128218;</div><p class="ph-lbl">Campus / Event Photo</p><p class="ph-cmd">src="photo3.jpg"</p></div>
+                    <div class="gs-caption">Research &amp; Campus Life</div>
+                </div>
+
+                <!-- SLIDE 4 — Photo -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Photo</div>
+                    <!--Replace: <div class="gs-media"><img src="photo4.jpg" alt="..."></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#127891;</div><p class="ph-lbl">Campus / Event Photo</p><p class="ph-cmd">src="photo4.jpg"</p></div>
+                    <div class="gs-caption">Academic Events</div>
+                </div>
+
+                <!-- SLIDE 5 — 3MT Video -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Video</div>
+                    <!--Replace: <div class="gs-media"><iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#127891;</div><p class="ph-lbl">3MT Presentation Video</p><p class="ph-cmd">youtube.com/embed/VIDEO_ID</p></div>
+                    <div class="gs-caption">Three Minute Thesis (3MT) &middot; FIU 2026 Finalist</div>
+                </div>
+
+                <!-- SLIDE 6 — Intro Bio -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Video</div>
+                    <!--Replace: <div class="gs-media"><iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#127916;</div><p class="ph-lbl">Intro / Bio Video</p><p class="ph-cmd">youtube.com/embed/VIDEO_ID</p></div>
+                    <div class="gs-caption">Personal Introduction</div>
+                </div>
+
+                <!-- SLIDE 7 — Research Talk -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Video</div>
+                    <!--Replace: <div class="gs-media"><iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#128203;</div><p class="ph-lbl">Research Talk</p><p class="ph-cmd">youtube.com/embed/VIDEO_ID</p></div>
+                    <div class="gs-caption">Research Presentation / Conference Talk</div>
+                </div>
+
+                <!-- SLIDE 8 — YouTube / Vimeo -->
+                <div class="gs-slide">
+                    <div class="gs-type-badge">Video</div>
+                    <!--Replace: <div class="gs-media"><iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe></div>-->
+                    <div class="gs-media ph"><div class="ph-ico">&#9654;</div><p class="ph-lbl">YouTube / Vimeo Embed</p><p class="ph-cmd">Paste iframe embed here</p></div>
+                    <div class="gs-caption">YouTube / Vimeo</div>
+                </div>
+
+            </div><!-- /gs-track -->
+
+            <button class="gs-btn gs-prev" aria-label="Previous">&#8592;</button>
+            <button class="gs-btn gs-next" aria-label="Next">&#8594;</button>
+            <div class="gs-counter"><span class="gs-cur">1</span>&thinsp;/&thinsp;<span class="gs-tot">8</span></div>
+
+            <div class="gs-footer">
+                <span class="gs-dot active" data-i="0"></span>
+                <span class="gs-dot" data-i="1"></span>
+                <span class="gs-dot" data-i="2"></span>
+                <span class="gs-dot" data-i="3"></span>
+                <span class="gs-dot" data-i="4"></span>
+                <span class="gs-dot" data-i="5"></span>
+                <span class="gs-dot" data-i="6"></span>
+                <span class="gs-dot" data-i="7"></span>
+            </div>
+        </div><!-- /gallery-show -->
+
+    </div>
+</div>
+
+<!-- 09 DOCUMENTS -->
+<div class="sec-ivory" id="documents">
+    <div class="sec">
+        <div class="sec-header reveal" data-num="09">
+            <div class="sec-eyebrow"><span class="sec-enum">09</span><span class="sec-elbl">Academic Materials</span></div>
+            <h2 class="sec-title">Documents</h2>
+        </div>
+        <div class="docs-grid">
+            <div class="doc-card reveal d1">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M7 4C7 3 7.9 2 9 2H20L26 8V28C26 29 25.1 30 24 30H9C7.9 30 7 29 7 28V4Z" stroke="currentColor" stroke-width="1.3"/><path d="M20 2V8H26" stroke="currentColor" stroke-width="1.3"/><path d="M11 16H21M11 20H18M11 24H15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                <p class="doc-badge">Research</p>
+                <h3 class="doc-title">Research Statement</h3>
+                <p class="doc-desc">Overview of my research agenda in empirical asset pricing and hedge fund analysis, current projects, and future directions.</p>
+                <a href="#" class="doc-btn">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">href="./documents/research-statement.pdf"</p>
+            </div>
+            <div class="doc-card reveal d2">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="22" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 11H29" stroke="currentColor" stroke-width="1.3"/><path d="M9 11V27" stroke="currentColor" stroke-width="1.3"/><path d="M13 16H25M13 20H22M13 24H18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                <p class="doc-badge">Teaching</p>
+                <h3 class="doc-title">Teaching Statement</h3>
+                <p class="doc-desc">Philosophy of teaching, pedagogical approach, and evidence of effectiveness in undergraduate and graduate finance courses.</p>
+                <a href="#" class="doc-btn">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">href="./documents/teaching-statement.pdf"</p>
+            </div>
+            <div class="doc-card reveal d3">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M7 4C7 3 7.9 2 9 2H20L26 8V28C26 29 25.1 30 24 30H9C7.9 30 7 29 7 28V4Z" stroke="currentColor" stroke-width="1.3"/><path d="M20 2V8H26" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="14" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M10 24C10 21.2 12.7 19 16 19C19.3 19 22 21.2 22 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                <p class="doc-badge">Curriculum Vitae</p>
+                <h3 class="doc-title">Curriculum Vitae</h3>
+                <p class="doc-desc">Full academic CV including research, teaching, professional experience, education, honors, and service activities.</p>
+                <a href="CV.pdf" class="doc-btn" target="_blank">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">CV.pdf (root directory)</p>
+            </div>
+            <div class="doc-card reveal d4">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="14" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="25" cy="14" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M3 26C3 23 5 21 7 21" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M29 26C29 23 27 21 25 21" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M9 29C9 25.7 12.1 23 16 23C19.9 23 23 25.7 23 29" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                <p class="doc-badge">Diversity &amp; Inclusion</p>
+                <h3 class="doc-title">Diversity Statement</h3>
+                <p class="doc-desc">Statement on commitment to diversity, equity, and inclusion in research, teaching, and professional service activities.</p>
+                <a href="#" class="doc-btn">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">href="./documents/diversity-statement.pdf"</p>
+            </div>
+            <div class="doc-card reveal d5">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M7 4C7 3 7.9 2 9 2H20L26 8V28C26 29 25.1 30 24 30H9C7.9 30 7 29 7 28V4Z" stroke="currentColor" stroke-width="1.3"/><path d="M20 2V8H26" stroke="currentColor" stroke-width="1.3"/><path d="M11 18L14 21L21 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="doc-badge">Job Market Paper</p>
+                <h3 class="doc-title">Job Market Paper</h3>
+                <p class="doc-desc"><em>Who Seeks Skewness? Payoff Engineering in Hedge Funds.</em> Full manuscript for academic job market submissions.</p>
+                <a href="#" class="doc-btn">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">href="./papers/jmp-ahsutoss-das.pdf"</p>
+            </div>
+            <div class="doc-card reveal d6">
+                <div class="doc-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="7" width="26" height="18" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 9L16 19L29 9" stroke="currentColor" stroke-width="1.3"/></svg></div>
+                <p class="doc-badge">Correspondence</p>
+                <h3 class="doc-title">Cover Letter</h3>
+                <p class="doc-desc">Academic cover letter for faculty and research position applications, tailored to finance and business school departments.</p>
+                <a href="#" class="doc-btn">&#8595;&nbsp; Download PDF</a>
+                <p class="doc-phnote">href="./documents/cover-letter.pdf"</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+    <p class="foot-name">Ahsutoss Das</p>
+    <p class="foot-role">Ph.D. Candidate &nbsp;&middot;&nbsp; Finance &nbsp;&middot;&nbsp; Florida International University</p>
+    <div class="foot-links">
+        <a class="foot-link" href="mailto:adas025@fiu.edu"><span>&#9993;</span> adas025@fiu.edu</a>
+        <a class="foot-link" href="tel:+15126651361"><span>&#9990;</span> +1 (512) 665&ndash;1361</a>
+        <a class="foot-link" href="https://linkedin.com/in/ahsutoss-das" target="_blank" rel="noopener"><span>&#10230;</span> linkedin.com/in/ahsutoss-das</a>
+    </div>
+    <p class="foot-copy">Miami, Florida, USA &nbsp;&middot;&nbsp; &copy; 2026 Ahsutoss Das</p>
+</footer>
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.06, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    function togglePaper(card) {
+        const abs  = card.querySelector('.abstract');
+        const lbl  = card.querySelector('.tlbl');
+        const open = abs.classList.toggle('open');
+        card.classList.toggle('open', open);
+        lbl.textContent = open ? 'Close' : 'Abstract';
+    }
+
+    /* ── GALLERY SLIDESHOW ── */
+    function initGallery(el) {
+        const track  = el.querySelector('.gs-track');
+        const slides = el.querySelectorAll('.gs-slide');
+        const dots   = el.querySelectorAll('.gs-dot');
+        const curEl  = el.querySelector('.gs-cur');
+        const n      = slides.length;
+        let idx = 0, timer;
+
+        function go(i) {
+            idx = ((i % n) + n) % n;
+            track.style.transform = `translateX(-${idx * 100}%)`;
+            dots.forEach((d, k) => d.classList.toggle('active', k === idx));
+            if (curEl) curEl.textContent = idx + 1;
+            /* pause iframes on hidden slides */
+            slides.forEach((s, k) => {
+                if (k !== idx) {
+                    const fr = s.querySelector('iframe');
+                    if (fr) { const src = fr.src; fr.src = ''; fr.src = src; }
+                }
+            });
+        }
+
+        function start() { timer = setInterval(() => go(idx + 1), 5000); }
+        function stop()  { clearInterval(timer); }
+        function reset() { stop(); start(); }
+
+        el.querySelector('.gs-next').addEventListener('click', () => { go(idx + 1); reset(); });
+        el.querySelector('.gs-prev').addEventListener('click', () => { go(idx - 1); reset(); });
+        dots.forEach(d => d.addEventListener('click', () => { go(+d.dataset.i); reset(); }));
+        el.addEventListener('mouseenter', stop);
+        el.addEventListener('mouseleave', start);
+        start();
+    }
+    document.querySelectorAll('.gallery-show').forEach(initGallery);
+</script>
+</body>
+</html>
